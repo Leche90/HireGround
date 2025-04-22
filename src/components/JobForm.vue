@@ -1,41 +1,63 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-defineProps<{ msg: string }>()
-
-const count = ref(0)
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
+  <div>
+    <h3>Add Job</h3>
+    <form @submit.prevent="handleSubmit">
+      <input v-model="form.title" placeholder="Job Title" required />
+      <input v-model="form.company" placeholder="Company" required />
+      <select v-model="form.status" required>
+        <option value="Applied">Applied</option>
+        <option value="Interviewed">Interviewed</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+      <input v-model="form.resume_link" placeholder="Resume Link" />
+      <textarea v-model="form.notes" placeholder="Notes"></textarea>
+      <button type="submit">Add Job</button>
+    </form>
+    <p v-if="error" class="error">{{ error }}</p>
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Learn more about IDE Support for Vue in the
-    <a
-      href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support"
-      target="_blank"
-      >Vue Docs Scaling up Guide</a
-    >.
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
+<script setup lang="ts">
+import { ref } from 'vue';
+import axios from 'axios';
+import { useAuthStore } from '../stores/auth';
+
+const authStore = useAuthStore();
+const emit = defineEmits(['job-added']);
+
+const form = ref({
+  title: '',
+  company: '',
+  status: 'Applied',
+  resume_link: '',
+  notes: '',
+});
+
+const error = ref<string | null>(null);
+
+const handleSubmit = async () => {
+  if (!authStore.isAuthenticated) {
+    error.value = 'You must be logged in';
+    return;
+  }
+
+  try {
+    await axios.post('http://localhost:5000/api/jobs', form.value);
+    emit('job-added');
+    form.value = { title: '', company: '', status: 'Applied', resume_link: '', notes: '' };
+    error.value = null;
+  } catch (err) {
+    error.value = err.response?.data?.error || 'Failed to add job';
+  }
+};
+</script>
+
 <style scoped>
-.read-the-docs {
-  color: #888;
+.error {
+  color: red;
+}
+textarea {
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 </style>
