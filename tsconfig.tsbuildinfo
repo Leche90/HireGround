@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/shims-vue.d.ts","./src/stores/auth.ts","./src/components/JobForm.vue","./src/pages/Jobs.vue","./src/pages/Login.vue","./src/pages/Register.vue"],"errors":true,"version":"5.7.3"}

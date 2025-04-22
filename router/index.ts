@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../pages/Login.vue';
-import Register from '../pages/Register.vue';
-import Jobs from '../pages/Jobs.vue';
-import { useAuthStore } from '../stores/auth';
+import Login from '../pages/../src/pages/Login.vue';
+import Register from '../pages/../src/pages/Register.vue';
+import Jobs from '../pages/../src/pages/Jobs.vue';
+import { useAuthStore } from '../pages/../src/stores/auth';
 
 const routes = [
   { path: '/login', component: Login },

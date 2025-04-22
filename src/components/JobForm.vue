@@ -46,7 +46,7 @@ const handleSubmit = async () => {
     emit('job-added');
     form.value = { title: '', company: '', status: 'Applied', resume_link: '', notes: '' };
     error.value = null;
-  } catch (err) {
+  } catch (err: any) {
     error.value = err.response?.data?.error || 'Failed to add job';
   }
 };

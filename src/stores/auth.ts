@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 export const useAuthStore = defineStore('auth', () => {
   const token = ref<string | null>(null);
@@ -18,7 +18,11 @@ export const useAuthStore = defineStore('auth', () => {
       user.value = response.data.user;
       axios.defaults.headers.common['Authorization'] = `Bearer ${token.value}`;
     } catch (error) {
-      throw new Error(error.response?.data?.error || 'Login failed');
+      if (axios.isAxiosError(error)) {
+        throw new Error(error.response?.data?.error || 'Login failed');
+      } else {
+        throw new Error('Login failed');
+      }
     }
   };
 
@@ -32,7 +36,11 @@ export const useAuthStore = defineStore('auth', () => {
       user.value = response.data.user;
       axios.defaults.headers.common['Authorization'] = `Bearer ${token.value}`;
     } catch (error) {
-      throw new Error(error.response?.data?.error || 'Registration failed');
+      if (axios.isAxiosError(error)) {
+        throw new Error(error.response?.data?.error || 'Registration failed');
+      } else {
+        throw new Error('Registration failed');
+      }
     }
   };
 
