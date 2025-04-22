@@ -6,30 +6,3 @@ router.post('/register', register);
 router.post('/login', login);
 
 module.exports = router;
-
-package.json
-{
-  "name": "hire-ground-backend",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@supabase/supabase-js": "^2.49.4",
-    "bcryptjs": "^3.0.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.9"
-  }
-}
