@@ -1,0 +1,146 @@
+:root {
+  --primary-color: #8148d6; /* Soft Royal Purple */
+  --primary-hover: #593a84;
+  --accent-color: #e67e22; /* Muted Burnt Orange */
+  --background: #fffefb; /* Light Champagne */
+  --text-color: #2e2e2e;
+  --input-bg: #ffffff;
+  --input-border: #ccc;
+
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+
+  color: var(--text-color);
+  background-color: var(--background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  // margin: 0;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+form {
+  background-color: #ffffff;
+  border-radius: var(--border-radius);
+  padding: 3rem;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 20px 30px rgba(107, 76, 154, 0.1);
+  border-left: 6px solid var(--primary-color);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(107, 76, 154, 0.2);
+}
+
+button {
+  padding: 12px 15px;
+  background-color: var(--accent-color);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+button:hover {
+  background-color: #cf711c;
+  transform: translateY(-2px);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.3);
+}
+
+.card {
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  background-color: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.error {
+  color: #d33f49;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+#app {
+  max-width: 1000px;
+  margin: 0;
+  text-align: center;
+}
+
+/* Remove dark-mode override */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: var(--text-color);
+    background-color: var(--background);
+  }
+
+  button {
+    background-color: var(--accent-color);
+    color: white;
+  }
+
+  a:hover {
+    color: var(--accent-color);
+  }
+}
